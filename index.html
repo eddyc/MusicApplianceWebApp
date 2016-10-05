@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+
+        <input type=button id="Sstring"></input>
+
+        <script>
+
+            var kvarSocket = new WebSocket("ws://127.0.0.1:8888", "kvar");
+            var stringSocket = new WebSocket("ws://127.0.0.1:8888", "Sstring");
+            
+            var trigger = 1;
+
+            stringButton.onclick = function() {
+
+                console.log("This is a string");
+                stringSocket.send("\"instr 3\n a1 oscils p4/2, p5 / 2, 0 \n out a1 \nendin\"");
+                kvarSocket.send(new Float64Array([trigger]));
+                trigger = !trigger;
+            }
+        </script>
+    </body>
+</html>
