@@ -13,7 +13,12 @@
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.16.0",
+    "filer": "0.0.44",
+    "jszip": "^3.1.3",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.16.0"
   }
 }
