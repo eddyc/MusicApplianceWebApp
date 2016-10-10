@@ -31,7 +31,6 @@ class Github {
 
                         for (var fileString in zip.files) {
 
-
                             if (~fileString.indexOf(".")) {
 
                                 files.push(fileString);
@@ -40,17 +39,7 @@ class Github {
 
                                 directories.push(fileString);
                             }
-
-                            // zip.file(fileString).async("string")
-                            // .then(function success(content) {
-                            //
-                            //     console.log(content);
-                            // },
-                            // function error(e) {
-                            //
-                            // });
                         }
-
 
                         for (let i = 0; i <  directories.length; ++i) {
 
@@ -60,18 +49,19 @@ class Github {
                         }
 
                         for (let i = 0; i <  files.length; ++i) {
-                            
+
                             zip.file(files[i]).async("string")
                             .then(function success(content) {
 
                                 filer.write(files[i], {data:content, type: 'text/plain'}, function(fileEntry, fileWriter) {
 
-                                    console.log(fileEntry);
+                                    if(fileEntry.name === 'index.html') {
+
+                                        console.log(fileEntry);
+                                        let iframe = document.getElementById("UIFrame");
+                                        iframe.contentWindow.document.location.href = fileEntry.toURL();
+                                    }
                                 });
-
-                            },
-                            function error(e) {
-
                             });
                         }
 
